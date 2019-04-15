@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { ActionCableConsumer } from 'react-actioncable-provider';
+
 import ItemsList from './ItemsList';
 import { API_ROOT, HEADERS } from '../utils/constants';
 
@@ -41,7 +43,13 @@ class App extends Component {
   render() {
     return (
       <div>
+        <ActionCableConsumer
+          channel={{ channel: 'ItemsChannel' }}
+          onReceived={this.handleReceivedItems}
+        />
+
         <ItemsList items={this.state.items} />
+
         <form className="App" onSubmit={this.onSubmitHandler}>
           <input value={this.state.itemInput} onChange={this.onChangeHandler} />
           <button>Submit</button>
