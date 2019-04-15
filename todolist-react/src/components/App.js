@@ -33,6 +33,9 @@ class App extends Component {
       body: JSON.stringify({description: this.state.itemInput})
     });
 
+    this.setState({ itemInput: '' });
+  }
+
   handleReceivedItems = response => {
     const { item } = response;
 
