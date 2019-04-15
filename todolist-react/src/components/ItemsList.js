@@ -18,18 +18,21 @@ class ItemsList extends Component {
 
   render() {
     return (
-      <ul>
-        {this.props.items.map((item, index) => {
-          return (
-            <li
-              onClick={this.onCompleteHandler(item.id)}
-              key={index}
-            >
-              {item.description}
-            </li>
-          );
-        })}
-      </ul>
+      <div>
+        <ul>
+          {this.props.items.map((item, index) => {
+            return (
+              <li
+                onClick={this.onCompleteHandler(item.id)}
+                key={index}
+              >
+                {item.description}
+              </li>
+            );
+          })}
+        </ul>
+        Total Items: {this.props.items.length}
+      </div>
     );
   };
 };
