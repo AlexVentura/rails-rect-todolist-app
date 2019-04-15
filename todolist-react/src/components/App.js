@@ -33,12 +33,13 @@ class App extends Component {
       body: JSON.stringify({description: this.state.itemInput})
     });
 
+  handleReceivedItems = response => {
+    const { item } = response;
+
     this.setState({
-      itemInput: '',
-      items: [...this.state.items, { description: this.state.itemInput }]
+      items: [...this.state.items, item]
     });
-    console.info("onSubmit: ", this.state)
-  }
+  };
 
   render() {
     return (
