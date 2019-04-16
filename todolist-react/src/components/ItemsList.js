@@ -5,7 +5,7 @@ class ItemsList extends Component {
   onCompleteHandler = (itemId) => (e) => {
     e.preventDefault();
 
-    console.info(itemId)
+    console.info("***** Completed Item: ", itemId)
 
     fetch(`${API_ROOT}/items/${itemId}`, {
       method: 'PUT',

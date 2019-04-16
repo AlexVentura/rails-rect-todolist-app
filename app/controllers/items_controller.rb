@@ -10,9 +10,11 @@ class ItemsController < ApplicationController
     item = Item.new(item_params)
 
     if item.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ItemSerializer.new(item)
-      ).serializable_hash
+      #serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        #ItemSerializer.new(item)
+      #).serializable_hash
+      serialized_data = Item.pending
+      serialized_data.to_json
 
       ActionCable.server.broadcast 'items_channel', serialized_data
       head :ok
@@ -22,9 +24,11 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   def update
     if @item.update(item_params)
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ItemSerializer.new(Item.pending)
-      ).serializable_hash
+      #serialized_data = ActiveModelSerializers::Adapter::Json.new(
+        #Item.pending
+      #).serializable_hash
+      serialized_data = Item.pending
+      serialized_data.to_json
 
       ActionCable.server.broadcast 'items_channel', serialized_data
       head :ok

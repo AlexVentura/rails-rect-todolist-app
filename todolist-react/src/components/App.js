@@ -17,7 +17,7 @@ class App extends Component {
     fetch(`${API_ROOT}/items`)
       .then(res => res.json())
       .then(items => this.setState({ items }));
-      console.info("didMount: ", this.state)
+      console.info("***** Component DidMount: ", this.state)
   };
 
   onChangeHandler = (event) => {
@@ -37,11 +37,9 @@ class App extends Component {
   }
 
   handleReceivedItems = response => {
-    const { item } = response;
+    console.info("***** Channel Response: ", response);
 
-    this.setState({
-      items: [...this.state.items, item]
-    });
+    this.setState({ items: response });
   };
 
   render() {
